@@ -1,0 +1,23 @@
+hikariCP 로 커넥션 풀 설정
+
+1. pom.xml에 hikariCP 추가해줌
+		 <dependency>
+		 	<groupId>com.zaxxer</groupId>
+		 	<artifactId>HikariCP</artifactId>
+		 	<version>2.7.4</version>
+		 </dependency>
+
+
+//DataSource는 JDBC 명세의 일부분이면서 일반화된 연결 팩토리이다.
+2.root-context에 다음 코딩 추가
+     ┌ 아래 코딩은 dataR
+	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property>
+		<property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:XE"></property>
+		<property name="username" value="project"></property>
+		<property name="password" value="1234"></property>
+	</bean>
+		
+	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
+		<constructor-arg ref="hikariConfig"/>
+	</bean>

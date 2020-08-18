@@ -1,0 +1,15 @@
+1.pom.xml에 코딩추가
+		 <dependency>
+		 	<groupId>org.bgee.log4jdbc-log4j2</groupId>
+		 	<artifactId>log4jdbc-log4j2-jdbc4</artifactId>
+		 	<version>1.16</version>
+		 </dependency>
+
+2.log4jdbc.log4j2.properties 파일 추가 하고 다음코딩
+log4jdbc.spylodelegator.name=net.sf.log4jdbc.log.slf4j.Slf4jSpyLogDelegator
+
+3.root-context.xml에 property 지우고 아래코딩 추가
+	<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
+	<property name="jdbcUrl" value="jdbc:log4jdbc:oracle:thin:@localhost:1521:XE"></property>
+	<property name="username" value="project"></property>
+	<property name="password" value="1234"></property>
