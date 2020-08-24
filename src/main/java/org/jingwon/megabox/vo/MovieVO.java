@@ -1,4 +1,4 @@
-package org.jingwon.megabox.vo;
+ package org.jingwon.megabox.vo;
 
 import java.util.Date;
 

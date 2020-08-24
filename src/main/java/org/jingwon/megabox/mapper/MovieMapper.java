@@ -15,4 +15,7 @@ public interface MovieMapper {
 	public void insertLike(@Param("seq_movie") int movie, @Param("seq_member") int member);
 	
 	public void deleteLike(@Param("seq_movie") int movie, @Param("seq_member") int member);
+	
+	public void insertMovie(MovieVO movieVO);
+	public void updateMovie(MovieVO movieVO);
 }
