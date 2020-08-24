@@ -1,4 +1,4 @@
-package org.jingwon.controller;
+package org.jingwon.megabox.controller;
 
 import org.springframework.stereotype.Controller;
 

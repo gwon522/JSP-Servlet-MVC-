@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="org.jingwon.megabox.mapper.MovieMapper">
+  <select id="selectMainPageMovieList" resultType="org.jingwon.megabox.vo.MovieVO">
+  	<![CDATA[select ROWNUM, seq_movie num, movie_name movie, gname genre, agrade age, director, release_date dates, actors, runTime, summary, total_views ,type_seq type,likes
+		from movie m join GENRE using(seq_genre) join age_grade using(seq_age) join (select distinct count(*) over(partition by seq_movie) likes,seq_movie from liked_movie order by likes desc) using(seq_movie)
+		where ROWNUM <=4]]> 
+  </select>
+  
+  <select id="selectMovieList" resultType="org.jingwon.megabox.vo.MovieVO">
+  	select * from movie 
+  	<where>
+  		<if test="type != 1 and type != null">
+  			type = #{type_seq}
+  		</if>
+  	</where>
+  </select>
+  
+  <select id="selectMovie" resultType="org.jingwon.megabox.vo.MovieVO">
+  	select * from movie where seq_movie = #{seq}
+  </select>
+  
+  <insert id="insertLike">
+  	insert into liked_movie values(seq_likeMovie.nextval,#{seq_movie},#{seq_member})
+  </insert>
+  
+  <delete id="deleteLike">
+  	delete liked_movie where seq_movie = #{seq_movie} and seq_member = #{seq_member}
+  </delete>
+  
+</mapper>

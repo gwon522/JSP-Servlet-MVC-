@@ -1,12 +1,9 @@
 package org.jingwon.megabox.vo;
 
-import org.springframework.stereotype.Component;
-
 import lombok.Data;
 
-@Component
 @Data
-public class Member {
+public class MemberVO {
 	private int 	seq;		//회원코드
 	private int 	type; 		//회원타입  ex) 비회원, 회원, 관리자
 	private String 	id;			//아이디 

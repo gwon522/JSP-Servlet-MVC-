@@ -1,6 +1,6 @@
 package org.jingwon.persistence;
 
-import org.jingwon.mapper.MovieMapper;
+import org.jingwon.megabox.mapper.MovieMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,13 +15,11 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class MovieListTest {
 
-		@Setter(onMethod_ = {@Autowired})
+		@Setter(onMethod_ = @Autowired)
 		private MovieMapper movieMapper;
 		
 		@Test
 		public void testMovieList() {
-			log.info(movieMapper.getClass().getName());
-			System.out.println("-------------------------------------------------");
-			log.info(movieMapper.getMovieList());
+			movieMapper.selectMainPageMovieList().forEach(movie -> log.info(movie));
 		}
 }
