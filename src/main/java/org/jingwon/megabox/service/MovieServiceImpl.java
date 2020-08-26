@@ -21,11 +21,22 @@ public class MovieServiceImpl implements MovieService{
 		log.info("mainPageMovieList....");
 		return mapper.selectMainPageMovieList();
 	}
+	@Override
+	public List<MovieVO> mainPageCurationList() {
+		log.info("mainPageCurationList...");
+		return mapper.selectMainPageCurationList();
+	}
+	
+	@Override
+	public MovieVO mainPageCuration() {
+		log.info("mainPageCuration...");
+		return mapper.selectMainPageCuration();
+	}
 
 	@Override
-	public List<MovieVO> getMovieList(int type) {
-		log.info("movieList.. type : "+type);
-		return mapper.selectMovieList(type);
+	public List<MovieVO> getMovieList(int type, String movie, boolean release_date) {
+		log.info("movieList.. type : "+type+" 영화명 :"+movie+"날짜순 정렬 :"+release_date);
+		return mapper.selectMovieList(type, movie, release_date);
 	}
 
 	@Override
@@ -45,5 +56,6 @@ public class MovieServiceImpl implements MovieService{
 		log.info("likeDown... m_seq : "+movie+" m_seq : "+member);
 		mapper.deleteLike(movie, member);
 	}
+	
 
 }

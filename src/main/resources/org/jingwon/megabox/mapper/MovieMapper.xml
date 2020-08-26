@@ -3,9 +3,18 @@
  
 <mapper namespace="org.jingwon.megabox.mapper.MovieMapper">
   <select id="selectMainPageMovieList" resultType="org.jingwon.megabox.vo.MovieVO">
-  	<![CDATA[select ROWNUM, seq_movie num, movie_name movie, gname genre, agrade age, director, release_date dates, actors, runTime, summary, total_views ,type_seq type,likes
+  	select ROWNUM, seq_movie num, movie_name movie, gname genre, agrade age, director, release_date dates, actors, runTime, summary, total_views ,type_seq type,likes
 		from movie m join GENRE using(seq_genre) join age_grade using(seq_age) join (select distinct count(*) over(partition by seq_movie) likes,seq_movie from liked_movie order by likes desc) using(seq_movie)
-		where ROWNUM <=4]]> 
+		where ROWNUM <![CDATA[ <]]>=4  
+  </select>
+  
+  <select id="selectMainPageCurationList" resultType="org.jingwon.megabox.vo.MovieVO">
+  	select * from(select movie_name movie, seq_movie num, release_date dates,type_seq type,total_views from movie m join curation on m.type_seq = curation.curation_seq where curation_name not in ('일반') order by release_date desc)
+  	where rownum <![CDATA[<=]]>4
+  </select>
+  <select id="selectMainPageCuration" resultType="org.jingwon.megabox.vo.MovieVO">
+  	select * from(select movie_name movie, seq_movie num, release_date dates, summary,type_seq type,total_views from movie m join curation on m.type_seq = curation.curation_seq where curation_name not in ('일반') order by release_date desc)
+  	where rownum <![CDATA[<=]]>1
   </select>
   
   <select id="selectMovieList" resultType="org.jingwon.megabox.vo.MovieVO">
@@ -14,7 +23,13 @@
   		<if test="type != 1 and type != null">
   			type = #{type_seq}
   		</if>
+  		<if test="movie!=null">
+  			and movie_name = ${movie}
+  		</if>
   	</where>
+  	<if test="release_date == true">
+  		order by release_date desc
+  	</if>
   </select>
   
   <select id="selectMovie" resultType="org.jingwon.megabox.vo.MovieVO">

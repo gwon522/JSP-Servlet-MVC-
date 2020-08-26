@@ -19,7 +19,10 @@ public class HomeController {
 	@RequestMapping("/main.do")
 	public String main(Model model) {
 		model.addAttribute("list", service.mainPageMovieList());
-		return "main";
+		model.addAttribute("list2", service.mainPageCurationList());
+		model.addAttribute("curation", service.mainPageCuration());
+		
+		return "home";
 	}
 	
 }

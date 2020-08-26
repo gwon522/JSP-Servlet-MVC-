@@ -7,8 +7,10 @@ import org.jingwon.megabox.vo.MovieVO;
 
 public interface MovieMapper {
 	public List<MovieVO> selectMainPageMovieList();
+	public List<MovieVO> selectMainPageCurationList();
+	public MovieVO selectMainPageCuration();
 	
-	public List<MovieVO> selectMovieList(@Param("type_seq") int type);
+	public List<MovieVO> selectMovieList(@Param("type_seq") int type, String movie, boolean release_date);
 	
 	public MovieVO selectMovie(@Param("seq") int movieSeq);
 	
@@ -18,4 +20,5 @@ public interface MovieMapper {
 	
 	public void insertMovie(MovieVO movieVO);
 	public void updateMovie(MovieVO movieVO);
+
 }

@@ -19,4 +19,5 @@ public class MovieVO {
 	private long 	total_views;	//누적관객수
 	private String 	type;			//큐레이션
 	private long 	likes;			//좋아요수
+	private long 	score;			//코멘트 점수
 }

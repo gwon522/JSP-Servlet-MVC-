@@ -12,13 +12,13 @@ import lombok.extern.log4j.Log4j;
 
 @Controller
 @Log4j
-@RequestMapping("/management/*")
+@RequestMapping("/management/")
 @AllArgsConstructor
 public class ManagementController { // 관리 페이지 하나 생성해야됨
 	//관리자 페이지 이동
 	@RequestMapping("/management.do")
 	public String management() {
-		return "management";
+		return "management/management";
 	}
 	//영화관련 관리.
 	@GetMapping("/addMovie.do")

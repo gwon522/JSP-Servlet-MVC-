@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<% pageContext.setAttribute("replaceChar", "\n");%>
 <div class="container no-padding-bottom main-container ">
 	<div id="contents">
 		<div class="main-page">
@@ -16,17 +18,17 @@
 					<div class="main-movie-list">
 						<ol class="list">
 							<c:forEach var="dto" items="${list}" varStatus="status">
-							<!-- 만약 list의 첫번째 값이라면 -->
-								<c:if test="${status.first}">
+							<c:choose>
+								<c:when test="${status.first}"><!-- 만약 list의 첫번째 값이라면 -->
 									<li name="li_boxoRankList"  class="first">
-								</c:if>
-							<!-- list의 첫번째 값 제외하고 -->
-								<c:if test="${not status.first}">
+								</c:when>
+								<c:otherwise><!-- list의 첫번째 값 제외하고 -->
 									<li name="li_boxoRankList" class="">
-								</c:if>
+								</c:otherwise>
+							</c:choose>
 							<a href="${pageContext.request.contextPath}/movie-detail.do?movie=${dto.num}" class="movie-list-info" title="영화상세 보기">
 								<p class="rank">${status.count}<span class="ir">위</span></p>
-								<img src="${pageContext.request.contextPath}/img/poster/${dto.num}/${dto.num}.jpg" alt="오류" class="poster">
+								<img src="${pageContext.request.contextPath}/resources/img/poster/${dto.num}/${dto.num}.jpg" alt="오류" class="poster">
 								<div class="wrap" style="display: none; opacity: 1;">
 									<div class="summary">${dto.summary}</div>
 									<div class="score">
@@ -39,7 +41,7 @@
 							</a>
 							<div class="btn-util">
                                 <button type="button" class="button btn-like">
-								<i title="보고싶어 설정 안함" class="iconset ico-heart-toggle-gray"></i>0</button>
+								<i title="보고싶어 설정 안함" class="iconset ico-heart-toggle-gray"></i>${dto.likes}</button>
                                 <div class="case">
                                 <!-- 개봉 예매가능 기본-->
                                 	<a href="${pageContext.request.contextPath}/booking.do?movie=${dto.num}" class="button gblue" title="영화 예매하기">예매</a>
@@ -203,70 +205,54 @@
 
 						<div class="curation-area">
 							<div class="curr-img">
-								<p class="bage classic">메가박스 클래식소사이어티</p>
+							<c:choose>
+								<c:when test="${curation.type eq 2}">
+									<p class="bage film">메가박스 필름소사이어티</p>
+								</c:when>
+								<c:otherwise>
+									<p class="bage classic">메가박스 클래식소사이어티</p>
+								</c:otherwise>
+							</c:choose>
 								<div class="img">
-									<a href="${pageContext.request.contextPath}/movie-detail.do?movie=영화명" title="영화상세 보기">
-									<img src="https://img.megabox.co.kr/SharedImg/2020/06/23/lepsjCKRQ84828xXV8miut1CmdnNG1X4_420.jpg" alt="[특별 상영] 베토벤 프로젝트" >
+									<a href="${pageContext.request.contextPath}/movie-detail.do?movie=${curation.num}" title="영화상세 보기">
+										<img src="${pageContext.request.contextPath}/resources/img/poster/${curation.num}/${curation.num}.jpg" alt="${curation.movie}" >
 									</a>
 								</div>
-
 								<div class="btn-group justify">
 									<div class="left">
-										<a href="${pageContext.request.contextPath}/movie-detail.do?movie=영화명" class="button" title="영화상세 보기">상세정보</a>
+										<a href="${pageContext.request.contextPath}/movie-detail.do?movie=${curation.num}" class="button" title="영화상세 보기">상세정보</a>
 									</div>
 									<div class="right">
-										<a href="${pageContext.request.contextPath}/booking.do?movie=" class="button gblue" title="영화 예매하기">예매</a>
+										<a href="${pageContext.request.contextPath}/booking.do?movie=${curation.num}" class="button gblue" title="영화 예매하기">예매</a>
 									</div>
 								</div>
-
-								<div class="info classic">
-									<p class="txt">
-										#<span>클래식소사이어티</span>
-									</p>
-									<p class="tit">[특별 상영] 베토벤 프로젝트</p>
-									<p class="summary">
-										[상영 정보]<br>- 상영 지점 : 코엑스, 센트럴, 목동, 킨텍스, 분당, 성수, 마산 (4주 상영)<br>-
-										추가 상영 지점 : 강남, 송도, 영통, 부산대, 대전현대아울렛, 세종청사 (2주 상영)<br>- 러닝 타임 :
-										140분 * 인터미션 없음<br>- 상영 일정 : 2020년 7월 12일 ~ 8월 5일 / 수, 일 (1회씩)
-										상영<br>- 배급사 사정에 따라 상영 일정 및 지점 등이 변경될 수 있습니다.<br> <br>제작 및 출연<br>작곡:
-										루트비히 판 베토벤 Ludwig van Beethoven<br>안무: 존 노이마이어 John Neumeier<br>지휘:
-										시몬 휴잇 Simon Hewett<br>연주: 미할 비아르크 (피아노), 도이치 방송 오케스트라 Michal
-										Bialk (Piano), Deutsche Radio Philharmonie<br>무용: 함부르크 발레단
-										Hamburg Ballett<br>공연 장소: 바덴-바덴 축제극장 Festspielhaus Baden-Baden<br> <br>루트비히
-										판 베토벤: 알레시 마르티네즈 Aleix Martinez<br>베토벤의 ‘이루어지지 않은 사랑’: 안나 로더
-										Anna Laudere<br>베토벤의 ‘이상향’: 드윈 레바초프 Edvin Revazov<br>베토벤의 어머니:
-										패트리샤 프리차 Patricia Friza<br>베토벤의 조카: 보르하 베르무데즈 Borja Bermudez<br>크리스토퍼
-										에반스 Christopher Evans<br>마크 후베테 Marc Jubete<br>에밀 마종 Emilie
-										Mazon<br>박윤수 Yun-Su Park<br> <br>작품 소개<br>독일 바덴-바덴 축제극장에서 베토벤
-										탄생 250주년을 기념해 공연된 기념비적인 발레 실황이다. 함부르크 발레단의 총감독이자 세계적으로 유명한 천재
-										안무가, 존 노이마이어가 창작한 작품으로, 고난도 발레 테크닉으로 가득 찬 표현주의 발레를 선보인다. 인간
-										베토벤의 삶에서 영감 받은 1부는 베토벤의 자전적인 이야기를 통해 개인적인 고뇌와 좌절을 그리고 있으며,
-										자유로운 극작법을 따르는 2부는 현대무용과 정통발레 사이를 오가며 희망을 노래한다.<br>‘에로이카 변주곡’,
-										교향곡 3번 ‘영웅’과 더불어 쉽게 접하기 힘든 베토벤 작곡의 발레곡을 중심으로 구성되는 공연은 독일 정상급
-										교향악단의 연주로 진행된다. 특히 피아니스트 미할 비아르크가 무대 위 그랜드 피아노를 연주하며 피아노 음색을
-										무용 속에 완전히 녹여내는 장면은 인상적이다. 악성 베토벤이 남긴 위대한 걸작과 경이로운 선율에 맞춰 움직이는
-										세계적인 발레단의 몸짓은 베토벤의 삶과 음악을 짙은 예술성으로 엮어낸다.<br> <br>주요 음악<br>-
-										변주곡과 푸가 Eb 장조, Op. 35 ‘에로이카 변주곡’<br>- 피아노 3중주 D 장조, Op. 70,
-										No. 1 ‘유령’<br>- 피아노 소나타 D 장조, Op. 10, No. 3<br>- 프로메테우스의 창조물,
-										Op. 43<br>- 교향곡 제3번, Eb 장조, Op. 55 ‘영웅’<br> <br>수입/배급 케빈앤컴퍼니<br>
-									</p>
+								<div class="info">
+									<p class="txt">#<span><c:choose><c:when test="${curation.type eq \"2\" }">필름소사이어티</c:when><c:otherwise>클래식소사이어티</c:otherwise></c:choose></span></p>
+									<p class="tit">${curation.movie}</p>
+									<p class="summary">${fn:replace(curation.summary, replaceChar, "<br>")}</p>
 								</div>
 							</div>
-							<!--// curr-img -->
-							<!--// list-area -->
+							
 							<div class="list">
 								<ul>
-								<!--  반복 4개 -->
+								<c:forEach items="${list2}" var="dto" varStatus="status">
 									<li>
-										<a href="#" title="영화상세 보기">
-											<p class="bage classic">클래식소사이어티</p>
+										<a href="${pageContext.request.contextPath}/movie-detail.do?movie=${dto.num}" title="영화상세 보기">
+										<c:choose>
+											 <c:when test="${dto.type eq \"2\"}">
+												<p class="bage film">필름소사이어티</p>
+											 </c:when>
+											 <c:otherwise>
+												<p class="bage classic">클래식소사이어티</p>
+											</c:otherwise>
+										</c:choose>
 											<div class="img">
-												<img src="이미지파일" alt="영화명">
+												<img src="${pageContext.request.contextPath}/resources/img/poster/${dto.num}/${dto.num}.jpg" alt="${dto.movie}">
 											</div>
-											<p class="tit">큐레이션 타이틀</p>
-											<p class="summary">내용</p>
+											<p class="tit">${dto.movie}</p>
 										</a>
 									</li>
+								</c:forEach>
 							</ul>
 						</div>
 					</div>
