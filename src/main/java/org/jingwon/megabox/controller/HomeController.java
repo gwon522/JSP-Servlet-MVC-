@@ -22,6 +22,7 @@ public class HomeController {
 		model.addAttribute("list2", service.mainPageCurationList());
 		model.addAttribute("curation", service.mainPageCuration());
 		
+<<<<<<< HEAD
 		return "main";
 	}
 	@RequestMapping("/movie.do")
@@ -30,5 +31,9 @@ public class HomeController {
 		return "movie";
 	}
 	
+=======
+		return "home";
+	}
+>>>>>>> 7d10c9bf9c88e682f9a576222036c0fcdb9fac6f
 	
 }

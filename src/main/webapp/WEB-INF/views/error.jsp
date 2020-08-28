@@ -4,8 +4,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<<<<<<< HEAD
 <title>오류페이지</title>
 <link rel="shortcut icon" href="https://www.megabox.co.kr/static/pc/images/favicon.ico" />
+=======
+<title>Exception</title>
+>>>>>>> 7d10c9bf9c88e682f9a576222036c0fcdb9fac6f
 </head>
 <body>
 <h4><c:out value="${exception.getMessage()}"></c:out></h4>
