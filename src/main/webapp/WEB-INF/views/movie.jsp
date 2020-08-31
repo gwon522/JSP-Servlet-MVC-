@@ -92,8 +92,8 @@
 <%-- 						</c:choose> --%>
 						
 						<div class="movie-search">
-							<input type="text" title="영화명을 입력하세요" id="movieName" name="ibxMovieNmSearch" placeholder="영화명 검색" class="input-text" onkeypress="if(event.keyCode==13) {fn_searchBtn()(); return false;}">
-							<button type="button" class="btn-search-input" id="btnSearch" onclick="fn_searchBtn('${param.type}');">검색</button>
+							<input type="text" title="영화명을 입력하세요" id="movieName" name="ibxMovieNmSearch" placeholder="영화명 검색" class="input-text" onkeypress="if(event.keyCode==13) {fn_searchBtn(${param.type});}">
+							<button type="button" class="btn-search-input" id="btnSearch" onclick="fn_searchBtn(${param.type});">검색</button>
 						</div>
 					</div>
 					<!--// movie-list-util -->

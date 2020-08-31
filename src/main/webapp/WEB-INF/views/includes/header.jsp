@@ -1,10 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<<<<<<< HEAD
 <header id="header" class="main-header none-ad">
-=======
-<header id="header" class="main-header no-bg none-ad">
->>>>>>> 7d10c9bf9c88e682f9a576222036c0fcdb9fac6f
     <h1 class="ci"><a href="main.do" title="MEGABOX 메인으로 가기">MEGABOX : Life Theater</a></h1>
     <div class="util-area">
         <div class="left-link">
@@ -69,17 +65,14 @@
     </div>
     <nav id="gnb" class="">
         <ul class="gnb-depth1">
-<<<<<<< HEAD
             <li><a href="${ pageContext.request.contextPath }/movie.do?type=1" class="gnb-txt-movie" title="영화">영화</a>
                 <div class="gnb-depth2">
                     <ul>
                         <li><a href="${ pageContext.request.contextPath }/movie.do?type=1" title="전체영화">전체영화</a></li>
-=======
             <li><a href="${ pageContext.request.contextPath }/movie.do" class="gnb-txt-movie" title="영화">영화</a>
                 <div class="gnb-depth2">
                     <ul>
                         <li><a href="${ pageContext.request.contextPath }/movie.do" title="전체영화">전체영화</a></li>
->>>>>>> 7d10c9bf9c88e682f9a576222036c0fcdb9fac6f
                         <li><a href="${ pageContext.request.contextPath }/curation.do" title="큐레이션">큐레이션</a></li>
                         <li id="festivalArea" style="display: none;"><a href="#" title="영화제">영화제</a></li>
                         <li><a href="${ pageContext.request.contextPath }/moviepost.do" title="무비포스트">무비포스트</a></li>
@@ -130,11 +123,8 @@
             <div class="list position-1">
                 <p class="tit-depth">영화</p>
                 <ul class="list-depth">
-<<<<<<< HEAD
                     <li><a href="${ pageContext.request.contextPath }/movie.do?type=1" title="전체영화">전체영화</a></li>
-=======
                     <li><a href="${ pageContext.request.contextPath }/movie.do" title="전체영화">전체영화</a></li>
->>>>>>> 7d10c9bf9c88e682f9a576222036c0fcdb9fac6f
                     <li><a href="${ pageContext.request.contextPath }/curation.do" title="큐레이션">큐레이션</a></li>
                     <li><a href="javascript:void(0)" title="영화제">영화제</a></li>
                     <li><a href="${ pageContext.request.contextPath }/moviepost.do" title="무비포스트">무비포스트</a></li>

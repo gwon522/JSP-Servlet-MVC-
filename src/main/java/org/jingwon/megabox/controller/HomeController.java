@@ -18,11 +18,11 @@ public class HomeController {
 	
 	@RequestMapping("/main.do")
 	public String main(Model model) {
+		log.info("controller : main.do 요청");
 		model.addAttribute("list", service.mainPageMovieList());
 		model.addAttribute("list2", service.mainPageCurationList());
 		model.addAttribute("curation", service.mainPageCuration());
 		
-<<<<<<< HEAD
 		return "main";
 	}
 	@RequestMapping("/movie.do")
@@ -30,10 +30,5 @@ public class HomeController {
 		model.addAttribute("list", service.getMovieList(type, search, check));
 		return "movie";
 	}
-	
-=======
-		return "home";
-	}
->>>>>>> 7d10c9bf9c88e682f9a576222036c0fcdb9fac6f
 	
 }

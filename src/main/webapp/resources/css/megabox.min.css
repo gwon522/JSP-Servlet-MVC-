@@ -12122,47 +12122,27 @@ body.no-scroll .tab-list.fixed {
 
 .movie-grade.age-1 {
 	background-image:
-<<<<<<< HEAD
 		url(../img/age/txt-age-all.png)
-=======
-		url(https://img.megabox.co.kr/static/pc/images/common/txt/txt-age-all.png)
->>>>>>> 7d10c9bf9c88e682f9a576222036c0fcdb9fac6f
 }
 
 .movie-grade.age-2 {
 	background-image:
-<<<<<<< HEAD
 		url(../img/age/txt-age-12.png)
-=======
-		url(https://img.megabox.co.kr/static/pc/images/common/txt/txt-age-12.png)
->>>>>>> 7d10c9bf9c88e682f9a576222036c0fcdb9fac6f
 }
 
 .movie-grade.age-3 {
 	background-image:
-<<<<<<< HEAD
 		url(../img/age/txt-age-15.png)
-=======
-		url(https://img.megabox.co.kr/static/pc/images/common/txt/txt-age-15.png)
->>>>>>> 7d10c9bf9c88e682f9a576222036c0fcdb9fac6f
 }
 
 .movie-grade.age-4 {
 	background-image:
-<<<<<<< HEAD
 		url(../img/age/txt-age-19.png)
-=======
-		url(https://img.megabox.co.kr/static/pc/images/common/txt/txt-age-19.png)
->>>>>>> 7d10c9bf9c88e682f9a576222036c0fcdb9fac6f
 }
 
 .movie-grade.age-no {
 	background-image:
-<<<<<<< HEAD
 		url(../img/age/txt-age-no.png)
-=======
-		url(https://img.megabox.co.kr/static/pc/images/common/txt/txt-age-no.png)
->>>>>>> 7d10c9bf9c88e682f9a576222036c0fcdb9fac6f
 }
 
 .movie-grade.small {
@@ -12171,7 +12151,6 @@ body.no-scroll .tab-list.fixed {
 }
 
 .movie-grade.small.age-all {
-<<<<<<< HEAD
 	background-image:url(../img/age/txt-age-small-all.png)
 }
 
@@ -12189,9 +12168,6 @@ body.no-scroll .tab-list.fixed {
 
 .movie-grade.small.age-no {
 	background-image:url(../img/age/txt-age-small-no.png)
-=======
-	background-image:
-		url(https://img.megabox.co.kr/static/pc/images/common/txt/txt-age-small-all.png)
 }
 
 .movie-grade.small.age-12 {
@@ -12212,7 +12188,6 @@ body.no-scroll .tab-list.fixed {
 .movie-grade.small.age-no {
 	background-image:
 		url(https://img.megabox.co.kr/static/pc/images/common/txt/txt-age-small-no.png)
->>>>>>> 7d10c9bf9c88e682f9a576222036c0fcdb9fac6f
 }
 
 .seat-condition {
