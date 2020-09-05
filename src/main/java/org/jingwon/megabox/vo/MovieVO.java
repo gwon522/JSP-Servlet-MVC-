@@ -20,4 +20,5 @@ public class MovieVO {
 	private String 	type;			//큐레이션
 	private long 	likes;			//좋아요수
 	private int 	score;			//코멘트 점수
+	private String 	special; 		//특별영화관
 }

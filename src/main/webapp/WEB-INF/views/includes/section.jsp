@@ -23,7 +23,7 @@ if(c!=null){
 			<div class="login-member col-2">
 				<div class="col-wrap">
 					<div class="col left">
-					<form id="loginForm" action="<%=path%>/login.do" method="post">
+					<form id="loginForm" action="${ pageContext.request.contextPath }/login.do" method="post">
 						<div class="login-input-area">
 						<input autocomplete="off" id="ibxLoginId" maxlength="20" name="id" type="text" placeholder="아이디" title="아이디를 입력하세요" class="input-text strTrim" <%if(cookieVal!=null){%>value="<%=cookieVal%>"<%} %>>
 						<input autocomplete="off" id="ibxLoginPwd" maxlength="20" name="pwd" type="password" placeholder="비밀번호" title="비밀번호를 입력하세요" class="input-text mt15">
@@ -36,9 +36,9 @@ if(c!=null){
 							</div>
 							<button id="btnLogin" type="submit" class="button purple large btn-login" >로그인</button>
 							<div class="link">
-								<a href="<%=path%>/user-find.do?find=id" title="ID/PW 찾기 선택">ID/PW 찾기</a>
-								<a href="<%=path%>/join.do" title="회원가입 선택">회원가입</a>
-								<a href="<%=path%>/nonMem.do" title="비회원 예매확인 선택">비회원 예매확인</a>
+								<a href="${ pageContext.request.contextPath }/user-find.do?find=id" title="ID/PW 찾기 선택">ID/PW 찾기</a>
+								<a href="${ pageContext.request.contextPath }/join.do" title="회원가입 선택">회원가입</a>
+								<a href="${ pageContext.request.contextPath }/nonMem.do" title="비회원 예매확인 선택">비회원 예매확인</a>
 							</div>
 						</div>
 						</form>

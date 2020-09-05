@@ -33,7 +33,7 @@
 					<h2 class="tit">전체영화</h2>
 					<div class="tab-list fixed">
 						<ul id="topMenu">
-							<li class=${param.type eq 1 or empty param.type ?"on":""}><a href="${pageContext.request.contextPath}/movie.do?type=1" title="박스오피스 탭으로 이동">박스오피스</a></li>
+							<li class=${param.type eq 1 ?"on":""}><a href="${pageContext.request.contextPath}/movie.do?type=1" title="박스오피스 탭으로 이동">박스오피스</a></li>
 							<li class=${param.type eq 4 ?"on":""}><a href="${pageContext.request.contextPath}/movie.do?type=4" title="상영예정작 탭으로 이동" >상영예정작</a></li>
 							<li class=${param.type eq 2 ?"on":""}><a href="${pageContext.request.contextPath}/movie.do?type=2" title="필름소사이어티 탭으로 이동">필름소사이어티</a></li>
 							<li class=${param.type eq 3 ?"on":""}><a href="${pageContext.request.contextPath}/movie.do?type=3" title="클래식소사이어티 탭으로 이동">클래식소사이어티</a></li>
@@ -119,7 +119,7 @@
 									<p class="classic" style="display: none">클래식 소사이어티</p>
 								</div>
 								<div class="movie-score">
-									<a href="${pageContext.request.contextPath}/movie-detail.do?movie=${dto.num}" class="wrap movieBtn" title="${dto.movie} 상세보기">
+									<a href="${pageContext.request.contextPath}/movie-detail.do?seq=${dto.num}" class="wrap movieBtn" title="${dto.movie} 상세보기">
 										<div class="summary"> ${dto.summary} </div>
 										<div class="my-score equa">
 											<div class="preview">
@@ -157,13 +157,6 @@
 					<!-- 검색결과 없을 때 -->
 					<div class="movie-list-no-result" id="noDataDiv" style="display: none;">
 						<p>현재 상영중인 영화가 없습니다.</p>
-					</div>
-					<!-- 검색결과 없을 때 장르-->
-					<div class="movie-list-no-favor" id="noMyGenre" style="display: none;">
-						<p>선호장르가 등록되지 않았습니다. 선호하시는 장르를 등록해보세요.</p>
-						<div class="btn-group center">
-							<a href="/mypage/additionalinfo" class="button large purple" title="선호장르설정하기 페이지로 이동">선호장르설정하기</a>
-						</div>
 					</div>
 				</div>
 			</div>

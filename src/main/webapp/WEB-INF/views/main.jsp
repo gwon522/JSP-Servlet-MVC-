@@ -39,7 +39,7 @@
 									<li name="li_boxoRankList" class="">
 								</c:otherwise>
 							</c:choose>
-							<a href="${pageContext.request.contextPath}/movie-detail.do?movie=${dto.num}" class="movie-list-info" title="영화상세 보기">
+							<a href="${pageContext.request.contextPath}/movie-detail.do?seq=${dto.num}" class="movie-list-info" title="영화상세 보기">
 								<p class="rank">${status.count}<span class="ir">위</span></p>
 								<img src="${pageContext.request.contextPath}/resources/img/poster/${dto.num}/${dto.num}.jpg" alt="오류" class="poster">
 								<div class="wrap" style="display: none; opacity: 1;">
@@ -227,13 +227,13 @@
 								</c:otherwise>
 							</c:choose>
 								<div class="img">
-									<a href="${pageContext.request.contextPath}/movie-detail.do?movie=${curation.num}" title="영화상세 보기">
+									<a href="${pageContext.request.contextPath}/movie-detail.do?seq=${curation.num}" title="영화상세 보기">
 										<img src="${pageContext.request.contextPath}/resources/img/poster/${curation.num}/${curation.num}.jpg" alt="${curation.movie}" >
 									</a>
 								</div>
 								<div class="btn-group justify">
 									<div class="left">
-										<a href="${pageContext.request.contextPath}/movie-detail.do?movie=${curation.num}" class="button" title="영화상세 보기">상세정보</a>
+										<a href="${pageContext.request.contextPath}/movie-detail.do?seq=${curation.num}" class="button" title="영화상세 보기">상세정보</a>
 									</div>
 									<div class="right">
 										<a href="${pageContext.request.contextPath}/booking.do?movie=${curation.num}" class="button gblue" title="영화 예매하기">예매</a>
@@ -250,7 +250,7 @@
 								<ul>
 								<c:forEach items="${list2}" var="dto" varStatus="status">
 									<li>
-										<a href="${pageContext.request.contextPath}/movie-detail.do?movie=${dto.num}" title="영화상세 보기">
+										<a href="${pageContext.request.contextPath}/movie-detail.do?seq=${dto.num}" title="영화상세 보기">
 										<c:choose>
 											 <c:when test="${dto.type eq \"2\"}">
 												<p class="bage film">필름소사이어티</p>

@@ -10,7 +10,7 @@ public interface MovieMapper {
 	public List<MovieVO> selectMainPageMovieList();
 	public List<MovieVO> selectMainPageCurationList();
 	public MovieVO selectMainPageCuration();
-	
+	public List<MovieVO> selectMovieLists();
 	public List<MovieVO> selectMovieList(@Param("type") String type,@Param("query") String search, @Param("check") boolean check);
 	public MovieVO selectMovie(@Param("seq") int movieSeq);
 	

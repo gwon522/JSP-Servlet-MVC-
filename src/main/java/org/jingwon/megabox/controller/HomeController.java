@@ -30,5 +30,9 @@ public class HomeController {
 		model.addAttribute("list", service.getMovieList(type, search, check));
 		return "movie";
 	}
-	
+	@RequestMapping("/movie-detail.do")
+	public String movieDetail(Model model, int seq) {
+		model.addAttribute("vo", service.getMovie(seq));
+		return "detail";
+	}
 }

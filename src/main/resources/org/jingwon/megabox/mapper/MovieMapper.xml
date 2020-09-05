@@ -36,13 +36,21 @@
 	  		and release_date <![CDATA[<=]]> sysdate
 	  	</if>
   	</where>
-  	<if test="check == true">
   		order by release_date desc
-  	</if>
   </select>
   
+  <select id="selectMovieLists" resultType="org.jingwon.megabox.vo.MovieVO">
+	  select seq_movie num, movie_name movie, director, release_date dates, agrade age
+	  from movie join age_grade using(seq_age)
+	  order by num desc
+  </select>
+  
+  
   <select id="selectMovie" resultType="org.jingwon.megabox.vo.MovieVO">
-  	select * from movie where seq_movie = #{seq}
+	select seq_movie num, gname genre, movie_name movie, director, release_date dates, actors, runTime, summary, special, total_views ,nvl(likes,0) likes,agrade age, nvl(score,0) score
+	from movie left outer join (select distinct count(*) over(partition by seq_movie) likes, seq_movie from liked_movie) using(seq_movie) join age_grade using(seq_age)  join genre using(seq_genre)
+	left outer join (select distinct seq_movie, avg(nvl(score,0)) over(partition by seq_movie) score from com_assess join reservation using(seq_reserve) join ticket on seq_ticket1 = seq_ticket join screen_info using(seq_screen)) using(seq_movie)
+	where seq_movie=#{seq}
   </select>
   
   <insert id="insertLike">

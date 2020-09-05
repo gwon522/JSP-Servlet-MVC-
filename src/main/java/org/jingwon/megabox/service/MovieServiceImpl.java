@@ -68,4 +68,9 @@ public class MovieServiceImpl implements MovieService{
 //		}; //만약 등록된 코멘트가 없으면 작성되게 해야됨
 		return -1;
 	}
+	@Override
+	public List<MovieVO> getMovieLists() {
+		log.info("movieList....");
+		return mapper.selectMovieLists();
+	}
 }
