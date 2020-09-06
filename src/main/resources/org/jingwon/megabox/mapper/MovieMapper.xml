@@ -65,5 +65,7 @@
   	insert into com_assess(seq_com,seq_reserve,seq_assess,seq_assess2,score,content) values(SEQ_COM.nextval,(select seq_reserve from reservation where seq_member = #{seq}),#{assess},#{assess2},#{score},#{content});
   </insert>
   
-  
+	<insert id="insertMovie">
+	
+	</insert>
 </mapper>

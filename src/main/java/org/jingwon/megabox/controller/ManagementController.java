@@ -1,10 +1,13 @@
 package org.jingwon.megabox.controller;
 
 import org.jingwon.megabox.service.MovieServiceImpl;
+import org.jingwon.megabox.vo.MovieVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -29,10 +32,13 @@ public class ManagementController { // 관리 페이지 하나 생성해야
 	public String addMovie() {
 		return "/management/addMovie";
 	}
-//	@PostMapping("/addMovie.do")
-//	public void addMovie( ) {
-//		
-//	}
+	@PostMapping("/addMovie.do")
+	public String addMovie(MovieVO movie, RedirectAttributes rttr) {
+		log.info("영화등록...."+ movie);
+		service.setMovie(movie);
+		rttr.addFlashAttribute("msg",movie.getMovie());
+		return "redirect:/managament.do";
+	}
 	@GetMapping("/detail.do")
 	public String movieDetail(Model model, int seq) {
 		model.addAttribute("vo",service.getMovie(seq));

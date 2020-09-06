@@ -73,4 +73,7 @@ public class MovieServiceImpl implements MovieService{
 		log.info("movieList....");
 		return mapper.selectMovieLists();
 	}
+	public void setMovie(MovieVO movie) {
+		mapper.insertMovie(movie);
+	}
 }
