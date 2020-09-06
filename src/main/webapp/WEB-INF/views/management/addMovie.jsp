@@ -7,7 +7,8 @@
 <meta charset="UTF-8">
 <title>관리자페이지 | 영화등록</title>
 </head>
-<link href="/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/resources/css/custom.css" rel="stylesheet">
 	<link rel="shortcut icon" href="https://www.megabox.co.kr/static/pc/images/favicon.ico" />
     <!-- MetisMenu CSS -->
     <link href="/resources/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
@@ -34,17 +35,15 @@
 <div class="row">
    <div class="col-lg-12">
        <div class="panel panel-default">
-           <div class="panel-heading"> 영화 목록 </div>
+           <div class="panel-heading"> 영화 정보 입력 </div>
            <div class="panel-body">
-           	<form action="/management/addMovie.do" method="post">
+           	<form action="" method="post">
            		<div class="form-group">
-           			<label>제목 : </label><input class="form-control" type="text" name="title"/>
+           			<label class="form-inline-margin">제목</label><input style="width: 300px;" type="text" name="title"/>
+           			<label class="form-inline-margin">감독명</label><input class="" type="text" name="director"/>
            		</div>
            		<div class="form-group">
-           			<label>감독명</label><input class="form-control" type="text" name="director"/>
-           		</div>
-           		<div class="form-group">
-           			<label>장르</label>
+           			<label class="form-inline-margin">장르</label>
            			<select name="genre" class="checkbox-inline">
            				<option value="not-picked">===선택===</option>
            				<option value="1">액션</option>
@@ -58,8 +57,7 @@
            				<option value="9">다큐멘터리</option>
            				<option value="10">없음</option>
            			</select>
-           			
-           			<label>관람등급</label>
+           			<label class="form-inline-margin">관람등급</label>
            			<select name="age" class="checkbox-inline">
            				<option value="not-picked">===선택===</option>
            				<option value="1">전체 관람가</option>
@@ -67,26 +65,35 @@
            				<option value="3">15세 관람가</option>
            				<option value="4">청소년 관람불가</option>
            			</select>
-           			
+           			<label class="form-inline-margin">영화타입</label>
+           			<select name="type" class="checkbox-inline">
+           				<option value="not-picked">===선택===</option>
+           				<option value="1">일반</option>
+           				<option value="2">필름 소사이어티</option>
+           				<option value="3">클래식 소사이어티</option>
+           			</select>
+           			<label class="form-inline-margin">개봉일자</label><input class="inline" type="date" name="dates"/>
            		</div>
            		<div class="form-group">
-           			<label>개봉일자</label><input class="form-control" type="text" name="title"/>
+           			<label class="form-inline-margin">포스터</label><input class="form-inline-margin" type="file" name="image"/>
            		</div>
            		<div class="form-group">
-           			<label>감독명</label><input class="form-control" type="text" name="title"/>
+           			<label class="form-inline-margin">러닝타임</label><input class="" type="number" name="runTime" />
+           			<label class="form-inline-margin">배우 </label><input class="" type="text" name="actor" />
+           			<label class="form-inline-margin">특별관 유무</label>
+           			<select name="special" class="checkbox-inline">
+           				<option value="not-picked">===선택===</option>
+           				<option value="none">없음</option>
+           				<option value="MX">MX</option>
+           			</select>
            		</div>
+           		
            		<div class="form-group">
-           			<label>감독명</label><input class="form-control" type="text" name="title"/>
+           			<label class="form-inline-margin">줄거리</label><textarea class="form-control"  rows="3" name="summary"></textarea>
            		</div>
-           		<div class="form-group">
-           			<label>감독명</label><input class="form-control" type="text" name="title"/>
-           		</div>
+           		<button type="submit" class="btn btn-default">작성 완료</button>
+           		<button type="reset" class="btn btn-default">초기화</button>
            	</form>
-               <div class="well">
-                   <h4>DataTables Usage Information</h4>
-                   <p>DataTables is a very flexible, advanced tables plugin for jQuery. In SB Admin, we are using a specialized version of DataTables built for Bootstrap 3. We have also customized the table headings to use Font Awesome icons in place of images. For complete documentation on DataTables, visit their website at <a target="_blank" href="https://datatables.net/">https://datatables.net/</a>.</p>
-                   <a class="btn btn-default btn-lg btn-block" target="_blank" href="https://datatables.net/">View DataTables Documentation</a>
-               </div>
            </div>
            <!-- /.panel-body -->
        </div>

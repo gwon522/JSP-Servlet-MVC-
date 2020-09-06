@@ -16,3 +16,9 @@
 	margin: 0 auto;
 	pointer-events:none;
 }
+.form-inline-margin{
+	
+	margin-left: 10px;
+	margin-right: 10px;
+	display: inline-block;
+}

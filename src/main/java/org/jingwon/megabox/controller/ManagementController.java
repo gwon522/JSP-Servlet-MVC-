@@ -29,5 +29,14 @@ public class ManagementController { // 관리 페이지 하나 생성해야
 	public String addMovie() {
 		return "/management/addMovie";
 	}
+//	@PostMapping("/addMovie.do")
+//	public void addMovie( ) {
+//		
+//	}
+	@GetMapping("/detail.do")
+	public String movieDetail(Model model, int seq) {
+		model.addAttribute("vo",service.getMovie(seq));
+		return "/management/detail";
+	}
 	//상품관련 관리.( 추가,세부페이지 내에서 수정 및 삭제)
 }
