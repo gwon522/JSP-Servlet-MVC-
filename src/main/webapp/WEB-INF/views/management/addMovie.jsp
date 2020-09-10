@@ -39,12 +39,12 @@
            <div class="panel-body">
            	<form action="" method="post">
            		<div class="form-group">
-           			<label class="form-inline-margin">제목</label><input style="width: 300px;" type="text" name="title"/>
-           			<label class="form-inline-margin">감독명</label><input class="" type="text" name="director"/>
+           			<label>제목</label><input class="form-control" type="text" name="title"/>
+           			<label>감독명</label><input class="form-control" type="text" name="director"/>
            		</div>
            		<div class="form-group">
-           			<label class="form-inline-margin">장르</label>
-           			<select name="genre" class="checkbox-inline">
+           			<label >장르</label> : 
+           			<select name="genre">
            				<option value="not-picked">===선택===</option>
            				<option value="1">액션</option>
            				<option value="2">성인</option>
@@ -57,39 +57,40 @@
            				<option value="9">다큐멘터리</option>
            				<option value="10">없음</option>
            			</select>
-           			<label class="form-inline-margin">관람등급</label>
-           			<select name="age" class="checkbox-inline">
+           			&nbsp;&nbsp; <label >관람등급</label> : 
+           			<select name="age">
            				<option value="not-picked">===선택===</option>
            				<option value="1">전체 관람가</option>
            				<option value="2">12세 관람가</option>
            				<option value="3">15세 관람가</option>
            				<option value="4">청소년 관람불가</option>
            			</select>
-           			<label class="form-inline-margin">영화타입</label>
-           			<select name="type" class="checkbox-inline">
+           			&nbsp;&nbsp; <label >영화타입</label> : 
+           			<select name="type" >
            				<option value="not-picked">===선택===</option>
            				<option value="1">일반</option>
            				<option value="2">필름 소사이어티</option>
            				<option value="3">클래식 소사이어티</option>
            			</select>
-           			<label class="form-inline-margin">개봉일자</label><input class="inline" type="date" name="dates"/>
-           		</div>
-           		<div class="form-group">
-           			<label class="form-inline-margin">포스터</label><input class="form-inline-margin" type="file" name="image"/>
-           		</div>
-           		<div class="form-group">
-           			<label class="form-inline-margin">러닝타임</label><input class="" type="number" name="runTime" />
-           			<label class="form-inline-margin">배우 </label><input class="" type="text" name="actor" />
-           			<label class="form-inline-margin">특별관 유무</label>
-           			<select name="special" class="checkbox-inline">
+           			&nbsp;&nbsp; <label >특별관 유무</label> : 
+           			<select name="special">
            				<option value="not-picked">===선택===</option>
            				<option value="none">없음</option>
            				<option value="MX">MX</option>
            			</select>
+           			&nbsp;&nbsp; <label >개봉일자</label> : 
+           			<input class="inline" type="date" name="dates" />
+           		</div>
+           		<div class="form-group">
+           			<label>러닝타임</label> : <input type="number" name="runTime" />&nbsp;&nbsp;
+           			<label>배우 </label> : <input type="text" name="actors" />
+           		</div>
+           		<div class="form-group">
+           			<label >포스터</label><input  type="file" name="image"/>
            		</div>
            		
            		<div class="form-group">
-           			<label class="form-inline-margin">줄거리</label><textarea class="form-control"  rows="3" name="summary"></textarea>
+           			<label >줄거리</label><textarea class="form-control"  rows="3" name="summary"></textarea>
            		</div>
            		<button type="submit" class="btn btn-default">작성 완료</button>
            		<button type="reset" class="btn btn-default">초기화</button>
