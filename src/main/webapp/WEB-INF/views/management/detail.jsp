@@ -35,16 +35,23 @@
            <div class="panel-body">
            	<form action="/management/addMovie.do" method="post">
            		<div class="form-group">
-           			<label>제목</label> : <c:out value="${vo.movie}"></c:out><br/>
-           			<label>감독명</label> : <c:out value="${vo.director}"></c:out> &nbsp;&nbsp;&nbsp;
-           			<label>장르</label> : <c:out value="${vo.genre}"></c:out> &nbsp;&nbsp;&nbsp;
-           			<label>관람등급</label> : <c:out value="${vo.age}"></c:out> &nbsp;&nbsp;&nbsp;
-           			<label>러닝타임</label> : <c:out value="${vo.runTime} 분"></c:out><br/>
+           				<img alt="" src="/resources/img/poster/${vo.num}/${vo.num}.jpg" align="left" width="130px" height="170px" style="margin-right: 20px;" >
+	           			<label>제목</label> : <c:out value="${vo.movie}"></c:out><br/>
+	           			<c:if test="${not empty vo.director}"> <label>감독명</label> : <c:out value="${vo.director}"></c:out> &nbsp;&nbsp;&nbsp;</c:if> 
+	           			<label>장르</label> : <c:out value="${vo.genre}"></c:out> &nbsp;&nbsp;&nbsp;
+	           			<label>관람등급</label> : <c:out value="${vo.age}"></c:out> &nbsp;&nbsp;&nbsp;
+	           			<label>러닝타임</label> : <c:choose> 
+	           										<c:when test="${vo.runTime eq 0}"> 없음 </c:when>
+	           										<c:otherwise><c:out value="${vo.runTime} 분"></c:out></c:otherwise>
+	           									  </c:choose>
+           		</div>
+           		<br clear="left"/>
+           		<div class="form-group">
            			<label>줄거리</label>  <p><c:out value="${vo.summary}"></c:out></p><br/>
            		</div>
-           		<div class="form-group">
-           		</div>
-                   <a class="btn btn-default btn-lg btn-block" href="management.do">목록</a>
+                   <a class="btn btn-default btn-lg btn-inlineblock" href="management.do">목록</a>
+                   <a class="btn btn-default btn-lg btn-inlineblock" href="update.do?num=${vo.num}">수정</a>
+                   <a class="btn btn-default btn-lg btn-inlineblock" href="delete.do?num=${vo.num}">삭제</a>
            	</form>
            </div>
            <!-- /.panel-body -->

@@ -36,7 +36,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
-                        <div class="panel-heading"> 영화 목록 </div>
+                        <div class="panel-heading"><p style="display: inline-block; font: 25px bolid;"> 영화 목록 </p><div style="float: right;"><a class="btn" href="/management/addMovie.do">영화 등록</a></div></div>
                         <div class="panel-body">
                             <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                 <thead>

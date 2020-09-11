@@ -11,7 +11,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="management.do">Ssd</a>
+                <a class="navbar-brand" href="http://localhost/main.do">메가박스로 이동</a>
             </div>
             <!-- /.navbar-header -->
 
