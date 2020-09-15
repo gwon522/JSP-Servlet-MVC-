@@ -14,23 +14,26 @@
 
     <!-- Bootstrap Core CSS -->
     <link href="/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<link rel="shortcut icon" href="https://www.megabox.co.kr/static/pc/images/favicon.ico" />
     <!-- MetisMenu CSS -->
     <link href="/resources/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
-
     <!-- DataTables CSS -->
     <link href="/resources/vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
-
     <!-- DataTables Responsive CSS -->
     <link href="/resources/vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
-
     <!-- Custom CSS -->
     <link href="/resources/dist/css/sb-admin-2.css" rel="stylesheet">
-
     <link href="/resources/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
 </head>
-
+<script>
+if (${param.result} == 1) {
+	alert('작업에 성공했습니다.')
+}else {
+	alert('작업에 오류가 있습니다.')
+}
+</script>
 <body>
 <%@include file="includes/manageHeader.jsp" %>
             <div class="row">
@@ -49,9 +52,9 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <c:forEach items="${list}" var="vo">
+                                    <c:forEach items="${list}" var="vo" varStatus="status">
                                     <tr style="cursor: pointer;" onclick="location.href='detail.do?num=${vo.num}'">
-                                    	<td><c:out value="${vo.num}"></c:out> </td>
+                                    	<td><c:out value="${status.count}"></c:out> </td>
                                     	<td><c:out value="${vo.movie}"></c:out> </td>
                                     	<td><fmt:formatDate pattern="yyyy/MM/dd" value="${vo.dates}"/></td>
                                     	<td><c:out value="${vo.director}"></c:out> </td>

@@ -46,15 +46,27 @@ public class ManagementController { // 관리 페이지 하나 생성해야
 	}
 	
 	@PostMapping("/addMovie.do")
-	public String addMovie(MovieVO movie) {
+	public String addMovie(Model model, MovieVO movie) {
 		log.info("영화등록...."+ movie.getDates());
-		service.setMovie(movie);
-		return "redirect:/managament.do";
+		model.addAttribute("result", service.setMovie(movie));
+		return "redirect:/managament/management.do";
 	}
 	@GetMapping("/detail.do")
 	public String movieDetail(Model model, int num) {
 		model.addAttribute("vo",service.getMovie(num));
 		return "/management/detail";
 	}
+	@GetMapping("/update.do")
+	public String movieUpdate(Model model, int num) {
+		model.addAttribute("vo", service.getMovie(num));
+		return "/management/update";
+	}
+	@PostMapping("/update.do")
+	public String movideUpdate(Model model,int num, MovieVO movie) {
+		movie.setNum(num);
+		model.addAttribute("result", service.setMovie(movie));
+		return "redirect:/management/management.do";
+	}
+	
 	//상품관련 관리.( 추가,세부페이지 내에서 수정 및 삭제)
 }

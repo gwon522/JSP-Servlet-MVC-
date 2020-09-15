@@ -2,70 +2,77 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
 <mapper namespace="org.jingwon.megabox.mapper.MovieMapper">
-  <select id="selectMainPageMovieList" resultType="org.jingwon.megabox.vo.MovieVO">
-  	select ROWNUM, seq_movie num, movie_name movie, gname genre, agrade age, director, release_date dates, actors, runTime, summary, total_views ,type_seq type,likes,nvl(score,0) score
-		from movie m join GENRE using(seq_genre) join age_grade using(seq_age) join (select distinct count(*) over(partition by seq_movie) likes,seq_movie from liked_movie order by likes desc) using(seq_movie)
+	  <select id="selectMainPageMovieList" resultType="org.jingwon.megabox.vo.MovieVO">
+	  	select ROWNUM, seq_movie num, movie_name movie, gname genre, agrade age, director, release_date dates, actors, runTime, summary, total_views ,type_seq type,likes,nvl(score,0) score
+			from movie m join GENRE using(seq_genre) join age_grade using(seq_age) join (select distinct count(*) over(partition by seq_movie) likes,seq_movie from liked_movie order by likes desc) using(seq_movie)
+			left outer join (select distinct seq_movie, avg(nvl(score,0)) over(partition by seq_movie) score from com_assess join reservation using(seq_reserve) join ticket on seq_ticket1 = seq_ticket join screen_info using(seq_screen)) using(seq_movie)
+			where ROWNUM <![CDATA[ <]]>=4  
+	  </select>
+	  
+	  <select id="selectMainPageCurationList" resultType="org.jingwon.megabox.vo.MovieVO">
+	  	select * from(select movie_name movie, seq_movie num, release_date dates,type_seq type,total_views from movie m join curation on m.type_seq = curation.curation_seq where curation_name not in ('일반') order by release_date desc)
+	  	where rownum <![CDATA[<=]]>4
+	  </select>
+	  <select id="selectMainPageCuration" resultType="org.jingwon.megabox.vo.MovieVO">
+	  	select * from(select movie_name movie, seq_movie num, release_date dates, summary,type_seq type,total_views from movie m join curation on m.type_seq = curation.curation_seq where curation_name not in ('일반') order by release_date desc)
+	  	where rownum <![CDATA[<=]]>1
+	  </select>
+	  
+	  <select id="selectMovieList" resultType="org.jingwon.megabox.vo.MovieVO">
+	  	select seq_movie num, movie_name movie, director, release_date dates, actors, runTime, summary, total_views ,type_seq type,nvl(likes,0) likes,seq_age age, nvl(score,0) score
+		from movie left outer join (select distinct count(*) over(partition by seq_movie) likes, seq_movie from liked_movie) using(seq_movie) 
 		left outer join (select distinct seq_movie, avg(nvl(score,0)) over(partition by seq_movie) score from com_assess join reservation using(seq_reserve) join ticket on seq_ticket1 = seq_ticket join screen_info using(seq_screen)) using(seq_movie)
-		where ROWNUM <![CDATA[ <]]>=4  
-  </select>
+	  	<where>
+	  		<if test="type != 4 or type != null">
+	  			and type_seq = #{type}
+	  		</if>
+	  		<if test="type == 4">
+	  			and type_seq = 1 and release_date <![CDATA[<=]]> sysdate
+	  		</if>
+	  		<if test="query!=null">
+	  			and movie_name like '%'||#{query}||'%'
+	  		</if>
+		  	<if test="check == true">
+		  		and release_date <![CDATA[<=]]> sysdate
+		  	</if>
+	  	</where>
+	  		order by release_date desc
+	  </select>
+	  
+	  <select id="selectMovieLists" resultType="org.jingwon.megabox.vo.MovieVO">
+		  select seq_movie num, movie_name movie, director, release_date dates, agrade age
+		  from movie join age_grade using(seq_age)
+		  order by num desc
+	  </select>
+	  
+	  
+	  <select id="selectMovie" resultType="org.jingwon.megabox.vo.MovieVO">
+		select seq_movie num, gname genre, movie_name movie, director, release_date dates, actors, runTime, summary, special, total_views ,nvl(likes,0) likes,agrade age, nvl(score,0) score
+		from movie left outer join (select distinct count(*) over(partition by seq_movie) likes, seq_movie from liked_movie) using(seq_movie) join age_grade using(seq_age)  join genre using(seq_genre)
+		left outer join (select distinct seq_movie, avg(nvl(score,0)) over(partition by seq_movie) score from com_assess join reservation using(seq_reserve) join ticket on seq_ticket1 = seq_ticket join screen_info using(seq_screen)) using(seq_movie)
+		where seq_movie=#{seq_movie}
+	  </select>
+	  
+	  <insert id="insertLike">
+	  	insert into liked_movie values(seq_likeMovie.nextval,#{seq_movie},#{seq_member})
+	  </insert>
+	  
+	  <delete id="deleteLike">
+	  	delete liked_movie where seq_movie = #{seq_movie} and seq_member = #{seq_member}
+ 	 </delete>
   
-  <select id="selectMainPageCurationList" resultType="org.jingwon.megabox.vo.MovieVO">
-  	select * from(select movie_name movie, seq_movie num, release_date dates,type_seq type,total_views from movie m join curation on m.type_seq = curation.curation_seq where curation_name not in ('일반') order by release_date desc)
-  	where rownum <![CDATA[<=]]>4
-  </select>
-  <select id="selectMainPageCuration" resultType="org.jingwon.megabox.vo.MovieVO">
-  	select * from(select movie_name movie, seq_movie num, release_date dates, summary,type_seq type,total_views from movie m join curation on m.type_seq = curation.curation_seq where curation_name not in ('일반') order by release_date desc)
-  	where rownum <![CDATA[<=]]>1
-  </select>
-  
-  <select id="selectMovieList" resultType="org.jingwon.megabox.vo.MovieVO">
-  	select seq_movie num, movie_name movie, director, release_date dates, actors, runTime, summary, total_views ,type_seq type,nvl(likes,0) likes,seq_age age, nvl(score,0) score
-	from movie left outer join (select distinct count(*) over(partition by seq_movie) likes, seq_movie from liked_movie) using(seq_movie) 
-	left outer join (select distinct seq_movie, avg(nvl(score,0)) over(partition by seq_movie) score from com_assess join reservation using(seq_reserve) join ticket on seq_ticket1 = seq_ticket join screen_info using(seq_screen)) using(seq_movie)
-  	<where>
-  		<if test="type != 4 or type != null">
-  			and type_seq = #{type}
-  		</if>
-  		<if test="type == 4">
-  			and type_seq = 1 and release_date <![CDATA[<=]]> sysdate
-  		</if>
-  		<if test="query!=null">
-  			and movie_name like '%'||#{query}||'%'
-  		</if>
-	  	<if test="check == true">
-	  		and release_date <![CDATA[<=]]> sysdate
-	  	</if>
-  	</where>
-  		order by release_date desc
-  </select>
-  
-  <select id="selectMovieLists" resultType="org.jingwon.megabox.vo.MovieVO">
-	  select seq_movie num, movie_name movie, director, release_date dates, agrade age
-	  from movie join age_grade using(seq_age)
-	  order by num desc
-  </select>
-  
-  
-  <select id="selectMovie" resultType="org.jingwon.megabox.vo.MovieVO">
-	select seq_movie num, gname genre, movie_name movie, director, release_date dates, actors, runTime, summary, special, total_views ,nvl(likes,0) likes,agrade age, nvl(score,0) score
-	from movie left outer join (select distinct count(*) over(partition by seq_movie) likes, seq_movie from liked_movie) using(seq_movie) join age_grade using(seq_age)  join genre using(seq_genre)
-	left outer join (select distinct seq_movie, avg(nvl(score,0)) over(partition by seq_movie) score from com_assess join reservation using(seq_reserve) join ticket on seq_ticket1 = seq_ticket join screen_info using(seq_screen)) using(seq_movie)
-	where seq_movie=#{seq_movie}
-  </select>
-  
-  <insert id="insertLike">
-  	insert into liked_movie values(seq_likeMovie.nextval,#{seq_movie},#{seq_member})
-  </insert>
-  
-  <delete id="deleteLike">
-  	delete liked_movie where seq_movie = #{seq_movie} and seq_member = #{seq_member}
-  </delete>
-  
-  <insert id="insertComment">
-  	insert into com_assess(seq_com,seq_reserve,seq_assess,seq_assess2,score,content) values(SEQ_COM.nextval,(select seq_reserve from reservation where seq_member = #{seq}),#{assess},#{assess2},#{score},#{content});
-  </insert>
+ 	 <insert id="insertComment">
+  		insert into com_assess(seq_com,seq_reserve,seq_assess,seq_assess2,score,content) values(SEQ_COM.nextval,(select seq_reserve from reservation where seq_member = #{seq}),#{assess},#{assess2},#{score},#{content});
+ 	 </insert>
   
 	<insert id="insertMovie">
-	
+		insert into movie values(movie_seq.nextval, #{movie},#{genre},#{age},#{dates},#{director},#{runTime},#{actors},#{type},#{special},#{summary})
 	</insert>
+	<update id="updateMovie">
+	update movie set movie_name = #{movie}, seq_genre = #{genre}, seq_age = #{age}, release_date = #{dates}, director = #{director}, runtime = #{runTime}, actors = #{actors}, type_seq = #{type}, special = #{special}, summary = #{summary} where seq_movie= #{num}
+	</update>
+	
+	<delete id="deleteMovie">
+		delete movie where seq_movie = #{num}
+	</delete>
 </mapper>

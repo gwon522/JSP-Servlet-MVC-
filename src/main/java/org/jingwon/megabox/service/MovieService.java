@@ -17,5 +17,7 @@ public interface MovieService{
 	public void likeUp(int movie, int member);
 	public void likeDown(int movie, int member);
 	public int comment(int seq, CommentVO commnetVO);
-	public void setMovie(MovieVO movie);
+	public void newMovie(MovieVO movie);
+	public int setMovie(MovieVO movie);
+	public int deleteMovie(int num);
 }
