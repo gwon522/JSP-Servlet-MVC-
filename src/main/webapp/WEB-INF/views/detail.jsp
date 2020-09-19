@@ -33,7 +33,6 @@
 				<div class="bg-pattern"></div>
 				<div class="bg-mask"></div>
 				<div class="movie-detail-cont">
-<%-- 						<p class="d-day default">예매 D-${vo.dates}</p> --%>
 					<p class="contents-type">&#35;오리지널티켓</p>
 					<p class="title">${vo.movie}</p>
 					<div class="btn-util">
@@ -53,12 +52,12 @@
 						<div class="rate">
 							<p class="tit">예매율</p>
 							<p class="cont">
-								<em></em>위 (dsdsd &#37;)
+								<em>2</em>위 (1 &#37;)
 							</p>
 						</div>
 						<div class="audience ">
 							<div class="tit ">
-								<span class="m-tooltip-wrap ">누적관객수 </span>
+								<span class="m-tooltip-wrap ">누적관객수</span>
 							</div>
 							<p class="cont">
 								<em>${vo.total_views}</em> 명
@@ -90,10 +89,10 @@
 					<div class="tab-list movie">
 						<!-- fixed 있으면 바 돌아다님 -->
 						<ul>
-							<li class="on"><a href="/on/oh/oha/Movie/selectMovieInfo.do" title="주요정보 탭으로 이동">주요정보</a></li>
-							<li><a href="/on/oh/oha/Movie/selectMovieOneDetail.do" title="실관람평 탭으로 이동">실관람평</a></li>
-							<li><a href="/on/oh/oha/Movie/selectMoviePostDetailC.do" title="무비포스트 탭으로 이동">무비포스트</a></li>
-							<li><a href="/on/oh/oha/Movie/selectMovieStilDetail.do" title="예고편/스틸컷 탭으로 이동">예고편/스틸컷</a></li>
+							<li class="on"><a href="" title="주요정보 탭으로 이동">주요정보</a></li>
+							<li><a href="" title="실관람평 탭으로 이동">실관람평</a></li>
+							<li><a href="" title="무비포스트 탭으로 이동">무비포스트</a></li>
+							<li><a href="" title="예고편/스틸컷 탭으로 이동">예고편/스틸컷</a></li>
 						</ul>
 					</div>
 					<div class="movie-summary infoContent" id="info">
@@ -123,7 +122,7 @@
 						<div class="col">
 							<dl>
 								<dt>관람포인트</dt>
-								<dd id="charByPoint">높은거 두개</dd>
+								<dd id="charByPoint">s</dd>
 							</dl>
 
 							<div class="graph" style="position: relative; bottom: 29px;">
@@ -147,9 +146,6 @@
 									<em>${vo.score}</em><span class="ir">점</span>
 								</dd>
 							</dl>
-							<div class="graph" style="display: none;">
-								<img src="../../../static/pc/images/movie/no-graph02.jpg" alt="메가스코어 결과 없음">
-							</div>
 							<div class="score equal" style="position: relative; bottom: 29px;">
 								<div class="middle">
 									<div class="circle">
@@ -178,30 +174,11 @@
 										<div class=""></div>
 									</div>
 								</div>
-								<canvas id="chartByBar" width="216" height="216"
-									class="chartjs-render-monitor"
-									style="display: block; width: 216px; height: 216px;"></canvas>
-								<img src="../../../static/pc/images/movie/no-graph03.jpg"
-									alt="기대율 결과 없음" style="display: none;">
-							</div>
-						</div>
-
-						<div class="col">
-							<dl>
-								<dt>일자별관객수</dt>
-								<dd class="font-roboto regular">${dto.view}</dd>
-							</dl>
-
-							<div class="graph">
-								<canvas id="chartByLine"
-									style="width: 220px; height: 205px; display: block;"
-									width="220" height="205"></canvas>
-								<img src="/static/pc/images/movie/no-graph04.jpg"
-									alt="일자별 관객수 결과 없음" style="display: none;">
+								<canvas id="chartByBar" width="216" height="216" class="chartjs-render-monitor" style="display: block; width: 216px; height: 216px;"></canvas>
+								<img src="../../../static/pc/images/movie/no-graph03.jpg" alt="기대율 결과 없음" style="display: none;">
 							</div>
 						</div>
 					</div>
-					<!-- 한줄평 있을 때 -->
 					<div class="tit-util mt70 mb15 oneContent">
 						<h2 class="tit small">${vo.movie}에 대한 <span class="font-gblue">???</span>개의 이야기가 있어요!
 						</h2>

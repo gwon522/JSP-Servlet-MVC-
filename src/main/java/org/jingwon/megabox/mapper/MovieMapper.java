@@ -20,6 +20,8 @@ public interface MovieMapper {
 	
 	public void insertMovie(MovieVO movieVO);
 	public int updateMovie(MovieVO movieVO);
-	public int deleteMovie(@Param("seq_movie") int num);
+	public int deleteMovie(int num);
 	public void insertComment(int seq, CommentVO commentVO);
+	
+	public int selectNextNum();
 }

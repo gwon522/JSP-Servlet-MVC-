@@ -23,7 +23,7 @@
 		from movie left outer join (select distinct count(*) over(partition by seq_movie) likes, seq_movie from liked_movie) using(seq_movie) 
 		left outer join (select distinct seq_movie, avg(nvl(score,0)) over(partition by seq_movie) score from com_assess join reservation using(seq_reserve) join ticket on seq_ticket1 = seq_ticket join screen_info using(seq_screen)) using(seq_movie)
 	  	<where>
-	  		<if test="type != 4 or type != null">
+	  		<if test="type == 2 or type == 3">
 	  			and type_seq = #{type}
 	  		</if>
 	  		<if test="type == 4">
@@ -66,13 +66,15 @@
  	 </insert>
   
 	<insert id="insertMovie">
-		insert into movie values(movie_seq.nextval, #{movie},#{genre},#{age},#{dates},#{director},#{runTime},#{actors},#{type},#{special},#{summary})
+		insert into movie values(#{num}, #{movie},#{genre},#{age},#{dates},#{director},#{runTime},#{actors},0,#{type},#{special},#{summary})
 	</insert>
 	<update id="updateMovie">
 	update movie set movie_name = #{movie}, seq_genre = #{genre}, seq_age = #{age}, release_date = #{dates}, director = #{director}, runtime = #{runTime}, actors = #{actors}, type_seq = #{type}, special = #{special}, summary = #{summary} where seq_movie= #{num}
 	</update>
-	
 	<delete id="deleteMovie">
 		delete movie where seq_movie = #{num}
 	</delete>
+	<select id="selectNextNum" resultType="int">
+		select MOVIE_SEQ.nextval from dual
+	</select>
 </mapper>

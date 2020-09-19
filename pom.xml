@@ -90,7 +90,6 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/m
 			<version>1</version>
 		</dependency>
 				
-		<!-- Servlet -->
 		
 		<dependency>
 			<groupId>javax.servlet</groupId>

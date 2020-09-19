@@ -20,4 +20,5 @@ public interface MovieService{
 	public void newMovie(MovieVO movie);
 	public int setMovie(MovieVO movie);
 	public int deleteMovie(int num);
+	public int getNum();
 }

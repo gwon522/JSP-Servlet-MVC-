@@ -37,9 +37,9 @@
        <div class="panel panel-default">
            <div class="panel-heading"> 영화 정보 입력 </div>
            <div class="panel-body">
-           	<form action="" method="post">
+           	<form action="" method="post" enctype="multipart/form-data">
            		<div class="form-group">
-           			<label>제목</label><input class="form-control" type="text" name="title"/>
+           			<label>제목</label><input class="form-control" type="text" name="movie"/>
            			<label>감독명</label><input class="form-control" type="text" name="director"/>
            		</div>
            		<div class="form-group">

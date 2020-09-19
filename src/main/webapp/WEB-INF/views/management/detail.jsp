@@ -35,7 +35,7 @@
            <div class="panel-body">
            	<form action="/management/addMovie.do" method="post">
            		<div class="form-group">
-           				<img alt="" src="/resources/img/poster/${vo.num}/${vo.num}.jpg" align="left" width="130px" height="170px" style="margin-right: 20px;" >
+           				<img alt="오류" src="/resources/img/poster/${vo.num}/${vo.num}.jpg" align="left" width="130px" height="170px" style="margin-right: 20px;" >
 	           			<label>제목</label> : <c:out value="${vo.movie}"></c:out><br/>
 	           			<c:if test="${not empty vo.director}"> <label>감독명</label> : <c:out value="${vo.director}"></c:out> &nbsp;&nbsp;&nbsp;</c:if> 
 	           			<label>장르</label> : <c:out value="${vo.genre}"></c:out> &nbsp;&nbsp;&nbsp;
