@@ -159,6 +159,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/m
 		 	<artifactId>spring-jdbc</artifactId>
 		 	<version>${org.springframework-version}</version>
 		 </dependency>
+		 
 		 <!-- log4jdbc-log4j2 -->
 		 <dependency>
 		 	<groupId>org.bgee.log4jdbc-log4j2</groupId>
@@ -168,8 +169,9 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/m
 		 <dependency>
          	<groupId>com.fasterxml.jackson.core</groupId>
          	<artifactId>jackson-databind</artifactId>
-         <version>2.9.4</version>
-      </dependency>
+         	<version>2.9.4</version>
+    	 </dependency>
+    	 
 		 <!-- file upload-->
 		 <dependency>
 		 	<groupId>commons-fileupload</groupId>
@@ -177,6 +179,27 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/m
 		 	<version>1.3.3</version>
 		 </dependency>
 		 
+		 <!-- security -->
+		 <dependency>
+		 	<groupId>org.springframework.security</groupId>
+		 	<artifactId>spring-security-web</artifactId>
+		 	<version>5.0.6.RELEASE</version>
+		 </dependency>
+		 <dependency>
+		 	<groupId>org.springframework.security</groupId>
+		 	<artifactId>spring-security-config</artifactId>
+		 	<version>5.0.6.RELEASE</version>
+		 </dependency>		 
+		 <dependency>
+		 	<groupId>org.springframework.security</groupId>
+		 	<artifactId>spring-security-core</artifactId>
+		 	<version>5.0.6.RELEASE</version>
+		 </dependency>		 
+		 <dependency>
+		 	<groupId>org.springframework.security</groupId>
+		 	<artifactId>spring-security-taglibs</artifactId>
+		 	<version>5.0.6.RELEASE</version>
+		 </dependency>		 
 	</dependencies>
     <build>
         <plugins>

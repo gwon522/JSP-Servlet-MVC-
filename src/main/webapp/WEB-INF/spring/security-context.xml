@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<bean id="PassWordEncoder" class="org.jingwon.megabox.security.NoOpPasswordEncoder"></bean>
+<security:http>
+	<security:intercept-url pattern="/myMegabox.do" access="hasRole('ROLE_MEMBER')"/>
+	<security:intercept-url pattern="/management/*.do" access="hasRole('ROLE_MANAGER')"/>
+	<security:form-login login-page="/main.do"/>
+<security:logout invalidate-session="true" logout-success-url="/main.do"/>
+</security:http>
+<security:authentication-manager>
+	<security:authentication-provider>
+		<security:jdbc-user-service data-source-ref="dataSource" />
+		<security:password-encoder ref="PassWordEncoder"/>
+	</security:authentication-provider>
+</security:authentication-manager>
+
+</beans>
