@@ -5,15 +5,20 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 <bean id="PassWordEncoder" class="org.jingwon.megabox.security.NoOpPasswordEncoder"></bean>
+<!-- <bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"></bean> -->
+<bean id="LoginSuccess" class="org.jingwon.megabox.security.LoginSuccessHandler"></bean>
 <security:http>
-	<security:intercept-url pattern="/myMegabox.do" access="hasRole('ROLE_MEMBER')"/>
+	<security:intercept-url pattern="/myMegabox/*.do" access="hasRole('ROLE_MEMBER')"/>
 	<security:intercept-url pattern="/management/*.do" access="hasRole('ROLE_MANAGER')"/>
-	<security:form-login login-page="/main.do"/>
-<security:logout invalidate-session="true" logout-success-url="/main.do"/>
+	<security:form-login login-page="/joinus/login.do" authentication-success-handler-ref="LoginSuccess" />
+<security:logout invalidate-session="true" logout-success-url="/main.do" />
 </security:http>
 <security:authentication-manager>
 	<security:authentication-provider>
-		<security:jdbc-user-service data-source-ref="dataSource" />
+		<security:jdbc-user-service 
+			data-source-ref="dataSource" 
+			users-by-username-query="select M_id as userName,pwd as password,1 as enabled from member where m_id =?" 
+			authorities-by-username-query="select M_id as username,role authority from member join member_type using(seq_mtype) where m_id = ?"/>
 		<security:password-encoder ref="PassWordEncoder"/>
 	</security:authentication-provider>
 </security:authentication-manager>

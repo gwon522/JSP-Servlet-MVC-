@@ -23,11 +23,11 @@ if(c!=null){
 			<div class="login-member col-2">
 				<div class="col-wrap">
 					<div class="col left">
-					<form id="loginForm" action="${ pageContext.request.contextPath }/joinus/login.do" method="post">
+					<form id="loginForm" action="/login" method="post">
 						<div class="login-input-area">
-						<input autocomplete="off" id="ibxLoginId" maxlength="20" name="id" type="text" placeholder="아이디" title="아이디를 입력하세요" class="input-text strTrim" <%if(cookieVal!=null){%>value="<%=cookieVal%>"<%} %>>
-						<input autocomplete="off" id="ibxLoginPwd" maxlength="20" name="pwd" type="password" placeholder="비밀번호" title="비밀번호를 입력하세요" class="input-text mt15">
-						<input type="hidden" name="url" id="pageUrl"/>
+						<input autocomplete="off" id="ibxLoginId" maxlength="20" name="username" type="text" placeholder="아이디" title="아이디를 입력하세요" class="input-text strTrim" <%if(cookieVal!=null){%>value="<%=cookieVal%>"<%} %>>
+						<input autocomplete="off" id="ibxLoginPwd" maxlength="20" name="password" type="password" placeholder="비밀번호" title="비밀번호를 입력하세요" class="input-text mt15">
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 							<div class="alert"></div>
 							<div class="chk-util">
 								<div class="left">
