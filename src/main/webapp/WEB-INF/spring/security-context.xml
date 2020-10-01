@@ -10,8 +10,8 @@
 <security:http>
 	<security:intercept-url pattern="/myMegabox/*.do" access="hasRole('ROLE_MEMBER')"/>
 	<security:intercept-url pattern="/management/*.do" access="hasRole('ROLE_MANAGER')"/>
-	<security:form-login login-page="/joinus/login.do" authentication-success-handler-ref="LoginSuccess" />
-<security:logout invalidate-session="true" logout-success-url="/main.do" />
+	<security:form-login login-page="/joinus/login.do" authentication-success-handler-ref="LoginSuccess" default-target-url="/main.do"/>
+	<security:logout logout-url="/joinus/logout.do" invalidate-session="true" logout-success-url="/main.do"/>
 </security:http>
 <security:authentication-manager>
 	<security:authentication-provider>

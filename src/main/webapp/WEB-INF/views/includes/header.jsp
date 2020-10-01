@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <header id="header" class="main-header none-ad">
     <h1 class="ci"><a href="main.do" title="MEGABOX 메인으로 가기">MEGABOX : Life Theater</a></h1>
     <div class="util-area">
@@ -10,16 +11,16 @@
         </div>
         <div class="right-link">
 <!-- 로그인전 -->
-	<c:if test="${empty sessionScope.auth}">
+	<sec:authorize access="anonymous">
             <div class="before">
                 <a href="javascript:void(0)" id="login" title="로그인">로그인</a>
                 <a href="${ pageContext.request.contextPath }/join.do" title="회원가입">회원가입</a>
             </div>
-	</c:if>
+	</sec:authorize>
 <!-- 로그인후 -->
-	<c:if test="${not empty sessionScope.auth}">
+	<sec:authorize access="hasAnyRole('ROLE_USER','ROLE_MANAGER')">
            <div class="after">
-                <a href="${ pageContext.request.contextPath }/logout.do" class="" title="로그아웃">로그아웃</a>
+                <a href="#" onclick="document.getElementById('logout').submit();" title="로그아웃">로그아웃</a>
                 <a href="" class="notice" title="알림">알림</a>
 				<div class="layer-header-notice">
 					<div class="notice-wrap">
@@ -54,7 +55,7 @@
             	</div>
            		<a href="${ pageContext.request.contextPath }/booking.do">빠른예매</a>
         </div>
-	</c:if>
+        	</sec:authorize>
     	</div>
     </div>
      <div class="link-area">
@@ -232,12 +233,14 @@
     </div>
 <!-- 레이어 : 검색 -->
     <div id="layer_header_search" class="header-layer layer-header-search"></div>
-    
+    <form action="/joinus/logout.do" id="logout" method="post">
+    	<input type="hidden"  name="${_csrf.parameterName}" value="${_csrf.token}"/>
+    </form>
 <!-- 나의 메가박스 -->
     <div id="layer_mymega" class="header-layer layer-mymege">
     	<a href="" class="ir" title="나의 메가박스 레이어 입니다.">나의 메가박스 레이어 입니다.</a>
         <div class="wrap" id="mymegabox" style="display:block">
-        <c:if test="${not empty sessionScope.auth}">
+        <sec:authorize access="hasAnyRole('ROLE_USER','ROLE_MANAGER')">
             <div class="login-after">
                 <div class="user-info">
                     <p class="txt">안녕하세요!</p>
@@ -296,8 +299,10 @@
                     </div>
                 </div>
             </div>
-          </c:if>
-		<c:if test="${empty sessionScope.auth}">
+           </sec:authorize>
+          
+          
+		<sec:authorize access="anonymous">
             <div class="login-before">
                 <p class="txt">
                     로그인 하시면 나의 메가박스를 만날 수 있어요.<br>
@@ -308,7 +313,7 @@
                 </div>
                 <a href="${ pageContext.request.contextPath }/join.do" class="link" title="혹시 아직 회원이 아니신가요?">혹시 아직 회원이 아니신가요?</a>
             </div>
-        </c:if>
+        </sec:authorize>
         </div>
         <div class="ir">
             <a href="javascript:void(0)" class="layer-close" title="레이어닫기">레이어닫기</a>

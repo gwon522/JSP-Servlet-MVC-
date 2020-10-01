@@ -24,10 +24,10 @@ public class JoinusController {
 			model.addAttribute("logout","로그아웃 되었습니다.");
 		}
 	}
-	@GetMapping("/logout")
-	public void logout() {
-		log.info("logout");
-	}
+//	@RequestMapping("/logout.do")
+//	public void logout() {
+//		log.info("logout");
+//	}
 	
 	
 }
