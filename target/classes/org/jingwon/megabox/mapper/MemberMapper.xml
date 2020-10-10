@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="org.jingwon.megabox.mapper.MemberMapper">
+
+	<resultMap type="org.jingwon.megabox.vo.MemberVO" id="memberMap">
+		<id property="id" column="m_id"/>
+		<result property="id" column="m_id"/>
+		<result property="pwd" column="pwd"/>
+		<result property="name" column="name"/>
+		<result property="type" column="SEQ_MTYPE"/>
+		<result property="tel" column="tel"/>
+		<result property="email" column="email"/>
+		<result property="birth" column="birth"/>
+		<result property="point" column="point"/>
+		<result property="grade" column="grade"/>
+		<collection property="authList" resultMap="authMap"></collection>
+	</resultMap>
+	<resultMap type="org.jingwon.megabox.vo.AuthVO" id="authMap">
+		<result property="id" column="m_id"/>
+		<result property="auth" column="role"/>
+	</resultMap>
+
+	<select id="read" resultMap="memberMap">
+		select SEQ_MTYPE, grade, M_ID, NAME, TEL, EMAIL, PWD, BIRTH, POINT, role  from member join member_grade using(seq_memgrade) join member_type using(seq_mtype) where m_id = #{id}
+	</select>
+</mapper>

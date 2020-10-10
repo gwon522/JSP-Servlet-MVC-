@@ -27,6 +27,7 @@ public class HomeController {
 	}
 	@RequestMapping("/movie.do")
 	public String movie(Model model, String type, String search, boolean check) {
+		log.info("type : "+type + "," + "search : " + search);
 		model.addAttribute("list", service.getMovieList(type, search, check));
 		return "movie";
 	}

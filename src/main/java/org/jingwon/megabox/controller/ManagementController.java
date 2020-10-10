@@ -68,8 +68,6 @@ public class ManagementController { // 관리 페이지 컨트롤러
 				rttr.addFlashAttribute("result", 1);
 			} catch (Exception e) {
 				log.error(e.getMessage());
-				System.out.println("==========================");
-				e.printStackTrace();
 				rttr.addFlashAttribute("result", -1);
 			}
 		}
@@ -98,7 +96,7 @@ public class ManagementController { // 관리 페이지 컨트롤러
 	
 	@GetMapping("/delete.do")
 	public String MovieDelete(int num) {
-		log.info(num+"번 게시글 삭제요청");
+		log.info(num+"번 게시글 삭제");
 		service.deleteMovie(num);
 		return "redirect:/management/management.do";
 	}

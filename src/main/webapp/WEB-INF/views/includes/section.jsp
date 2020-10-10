@@ -1,17 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%
-String path = request.getContextPath();
-Cookie[] c = request.getCookies();
-String cookieVal="";
-if(c!=null){
-    for(Cookie i:c){
-        if(i.getName().equals("saveId")){
-            cookieVal=i.getValue();
-        }
-    }
-}
-%>
 <section id="layer_login_select" class="modal-layer" style="z-index: 501;">
 <a href="" class="focus">레이어로 포커스 이동 됨</a>
 <div class="wrap" style="width: 425px; height: 365px; top:200px;left:37%;">
@@ -25,13 +13,13 @@ if(c!=null){
 					<div class="col left">
 					<form id="loginForm" action="/login" method="post">
 						<div class="login-input-area">
-						<input autocomplete="off" id="ibxLoginId" maxlength="20" name="username" type="text" placeholder="아이디" title="아이디를 입력하세요" class="input-text strTrim" <%if(cookieVal!=null){%>value="<%=cookieVal%>"<%} %>>
+						<input autocomplete="off" id="ibxLoginId" maxlength="20" name="username" type="text" placeholder="아이디" title="아이디를 입력하세요" class="input-text strTrim"value="">
 						<input autocomplete="off" id="ibxLoginPwd" maxlength="20" name="password" type="password" placeholder="비밀번호" title="비밀번호를 입력하세요" class="input-text mt15">
 						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 							<div class="alert"></div>
 							<div class="chk-util">
 								<div class="left">
-									<input id="chkIdSave" name="chkIdSave" type="checkbox" <%if(cookieVal!=null&&cookieVal!=""){%>checked="checked"<%}%>> <label for="chkIdSave">아이디 저장</label>
+									<input id="chkIdSave" name="chkIdSave" type="checkbox"> <label for="chkIdSave">아이디 저장</label>
 								</div>
 							</div>
 							<button id="btnLogin" type="submit" class="button purple large btn-login" >로그인</button>
@@ -51,3 +39,10 @@ if(c!=null){
 	<button type="button" class="btn-modal-close">레이어 닫기</button>
 </div>
 </section>
+<script>
+$(function() {
+	if (<c:out value='${login}'/>=='fail') {
+		alert("아이디와 비밀번호를 확인해주세요.");
+	}
+})
+</script>

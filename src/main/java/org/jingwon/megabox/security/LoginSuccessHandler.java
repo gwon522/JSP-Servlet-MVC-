@@ -25,17 +25,12 @@ public class LoginSuccessHandler extends SavedRequestAwareAuthenticationSuccessH
 		log.warn("Login Success");
 		HttpSession session = request.getSession();
 		if (session !=null) {
-			log.warn("not null session");
 			String targetUrl = request.getHeader("referer");
 			if (targetUrl != null) {
-				log.warn("not null"+ targetUrl);
+				log.warn("RedirectURL -> "+ targetUrl);
 				response.sendRedirect(targetUrl);
 			}
 		}
-//		List<String> roleNames = new ArrayList<String>();
-//		auth.getAuthorities().forEach(autority -> {
-//			roleNames.add(autority.getAuthority());
-//		});
 	}
 
 		

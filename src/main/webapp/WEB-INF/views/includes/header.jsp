@@ -8,19 +8,22 @@
             <a href="${ pageContext.request.contextPath }/benefit/viplounge.do" title="VIP LOUNGE">VIP LOUNGE</a>
             <a href="${ pageContext.request.contextPath }/benefit/membership.do" title="멤버십">멤버십</a>
             <a href="${ pageContext.request.contextPath }/support.do" title="고객센터">고객센터</a>
+        <sec:authorize access="hasRole('ROLE_MANAGER')">
+        	<a href="${ pageContext.request.contextPath}/management/management.do" title="관리 페이지">관리페이지로 이동</a>
+        </sec:authorize>
         </div>
         <div class="right-link">
 <!-- 로그인전 -->
 	<sec:authorize access="anonymous">
             <div class="before">
                 <a href="javascript:void(0)" id="login" title="로그인">로그인</a>
-                <a href="${ pageContext.request.contextPath }/join.do" title="회원가입">회원가입</a>
+                <a href="${ pageContext.request.contextPath}/joinus/join.do" title="회원가입">회원가입</a>
             </div>
 	</sec:authorize>
 <!-- 로그인후 -->
 	<sec:authorize access="hasAnyRole('ROLE_USER','ROLE_MANAGER')">
            <div class="after">
-                <a href="#" onclick="document.getElementById('logout').submit();" title="로그아웃">로그아웃</a>
+                <a href="javascript:void(0)" onclick="document.getElementById('logout').submit();" title="로그아웃">로그아웃</a>
                 <a href="" class="notice" title="알림">알림</a>
 				<div class="layer-header-notice">
 					<div class="notice-wrap">

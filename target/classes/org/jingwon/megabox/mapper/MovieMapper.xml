@@ -42,7 +42,7 @@
 	  <select id="selectMovieLists" resultType="org.jingwon.megabox.vo.MovieVO">
 		  select seq_movie num, movie_name movie, director, release_date dates, agrade age
 		  from movie join age_grade using(seq_age)
-		  order by num desc
+		  order by num desc-0123
 	  </select>
 	  
 	  

@@ -1,5 +1,7 @@
 package org.jingwon.megabox.vo;
 
+import java.util.List;
+
 import lombok.Data;
 
 @Data
@@ -18,4 +20,5 @@ public class MemberVO {
 	private int 	count_show;	//관람권수
 	private int 	count_resv;	//예약내역수
 	private int 	count_buy;	//구매내역수
+	private List<AuthVO> authList;
 }

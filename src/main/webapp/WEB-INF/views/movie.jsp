@@ -80,26 +80,11 @@
 							</c:otherwise>
 						</c:choose>
 						
-<%-- 						<c:choose> --%>
-<%-- 							<c:when test="${empty list}"> --%>
-<!-- 								<p class="no-result-count"> -->
-<!-- 									<strong id="totCnt">0</strong>개의 영화가 검색되었습니다. -->
-<!-- 								</p> -->
-<%-- 							</c:when> --%>
-<%-- 							<c:otherwise> --%>
 								<p class="no-result-count"><strong id="totCnt">${fn:length(list)}</strong>개의 영화가 검색되었습니다.</p>
-<%-- 							</c:otherwise> --%>
-<%-- 						</c:choose> --%>
 						
 						<div class="movie-search">
 							<input type="text" title="영화명을 입력하세요" id="movieName" name="ibxMovieNmSearch" placeholder="영화명 검색" class="input-text" onkeypress="if(event.keyCode==13) {fn_searchBtn(${param.type});}">
 							<button type="button" class="btn-search-input" id="btnSearch" onclick="fn_searchBtn(${param.type});">검색</button>
-						</div>
-					</div>
-					<!--// movie-list-util -->
-					<div class="bg-loading" style="display: none;">
-						<div class="spinner-border" role="status">
-							<span class="sr-only">Loading...</span>
 						</div>
 					</div>
 					

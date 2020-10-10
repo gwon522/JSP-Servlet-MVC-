@@ -16,10 +16,10 @@ public class MapperTest {
 	
 	
 	@Setter(onMethod_ = @Autowired)
-	private MovieMapper mapper;
+	private MemberMapper mapper;
 	
 	@Test
 	public void testListGetting(){
-		mapper.selectMainPageMovieList().forEach(movie -> log.info(movie));
+		mapper.read("nesaz0522");
 	}
 }

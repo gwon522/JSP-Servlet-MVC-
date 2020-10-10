@@ -117,7 +117,7 @@ $(function() {
 	        }
 	    })
 		
-	    
+//	fn_close() -> 로그인에서 x버튼 누를시 모달창 숨기기 및 백그라운드 모달도 같이 숨김    
 function fn_close() {
 	$('.main-notice-layer').css("display", "none");
 	$('body').removeClass('no-scroll');
@@ -125,6 +125,8 @@ function fn_close() {
 	$('.bg-modal').hide('slow','0');
 }
 
+	    
+//  fn_searchBtn(타입) -> 메인에서 검색시 타입에 1을 넣어줘서 모든 영화( type=1)와 검색어를 가지고 location.href	    
 function fn_searchBtn(type) {  //영화 검색
 	var searchWord = $('#movieName').val();
 	if (searchWord==null||searchWord=="") {

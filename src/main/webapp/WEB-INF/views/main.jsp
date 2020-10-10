@@ -68,7 +68,7 @@
 					<div class="search-link">
 						<div class="cell">
 							<div class="search">
-								<input type="text" placeholder="영화명을 입력해 주세요" title="영화 검색" class="input-text" id="movieName">
+								<input type="text" placeholder="영화명을 입력해 주세요" title="영화 검색" onkeypress="if(event.keyCode==13) {fn_searchBtn(1);}" class="input-text" id="movieName">
 								<button type="button" class="btn" onclick="fn_searchBtn(1);" id="btnSearch"><i class="iconset ico-search-w"></i> 검색</button>
 							</div>
 						</div>
@@ -112,7 +112,6 @@
 									<button type="button" class="btn-pause on">일시정지</button>
 									<button type="button" class="btn-play">자동재생</button>
 								</div>
-								<div class="page-count">페이징처리필요</div>
 							</div>
 						</div>
 

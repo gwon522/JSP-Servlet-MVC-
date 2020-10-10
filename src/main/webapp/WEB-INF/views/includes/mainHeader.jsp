@@ -19,13 +19,13 @@
 		<sec:authorize access="anonymous">
             <div class="before">
                 <a href="javascript:void(0)" id="login" title="로그인">로그인</a>
-                <a href="${ pageContext.request.contextPath }/join.do" title="회원가입">회원가입</a>
+                <a href="${ pageContext.request.contextPath }/joinus/join.do" title="회원가입">회원가입</a>
             </div>
         </sec:authorize>
 <!-- 로그인후 -->
 		<sec:authorize access="hasAnyRole('ROLE_USER','ROLE_MANAGER')">
            <div class="after">
-                <a href="#" onclick="document.getElementById('logout').submit();" class="" title="로그아웃">로그아웃</a>
+                <a href="javascript:void(0)" onclick="document.getElementById('logout').submit();" class="" title="로그아웃">로그아웃</a>
                 <a href="" class="notice" title="알림">알림</a>
 				<div class="layer-header-notice">
 					<div class="notice-wrap">
@@ -220,15 +220,6 @@
                     <li><a href="#" target="_blank" title="윤리경영">윤리경영</a></li>
                 </ul>
             </div>
-
-            <div class="list position-10">
-                <p class="tit-depth">이용정책</p>
-                <ul class="list-depth">
-                    <li><a href="${ pageContext.request.contextPath }" title="이용약관">이용약관</a></li>
-                    <li><a href="${ pageContext.request.contextPath }/support/privacy.do" title="개인정보처리방침">개인정보처리방침</a></li>
-                    <li><a href="${ pageContext.request.contextPath }" title="스크린수배정에관한기준">스크린수배정에관한기준</a></li>
-                </ul>
-            </div>
             <div class="ir">
                 <a href="#" class="layer-close" title="레이어닫기">레이어닫기</a>
             </div>
@@ -236,10 +227,13 @@
     </div>
 <!-- 레이어 : 검색 -->
     <div id="layer_header_search" class="header-layer layer-header-search"></div>
+    
+<!-- 로그아웃 폼 -->
     <form action="/joinus/logout.do" id="logout" method='post'>
            	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
     </form>
 <!-- 나의 메가박스 -->
+
     <div id="layer_mymega" class="header-layer layer-mymege">
     	<a href="" class="ir" title="나의 메가박스 레이어 입니다.">나의 메가박스 레이어 입니다.</a>
         <div class="wrap" id="mymegabox" style="display:block">
@@ -248,21 +242,19 @@
                 <div class="user-info">
                     <p class="txt">안녕하세요!</p>
                     <p class="info">
-                    <c:if test="${auth.mem_grade gt 3}">
-                       <em class="vip">VIP PREMIUM</em>
-                    </c:if>
-                       <em class="name">${auth.name}</em><span> 회원님</span>
+                       <em class="name"><sec:authentication property="principal.member.name"/></em><span> 회원님</span>
                     </p>
                     <div class="last-date">마지막 접속일 : <em><%=session.getAttribute("date")%></em></div>
-                    <div class="membership">${auth.grade}</div>
+                    <div class="membership"><sec:authentication property="principal.member.grade"/></div>
                     <div class="btn-fixed">
                         <a href="#" class="button" title="나의 메가박스">나의 메가박스</a>
                     </div>
                 </div>
+                
                 <div class="box">
                     <div class="point">
                         <p class="tit">Point</p>
-                        <p class="count">${auth.point}</p>
+                        <p class="count"><sec:authentication property="principal.member.point"/> P</p>
                         <div class="btn-fixed">
                             <a href="#포인트이용내역으로 이동" class="button" title="멤버십 포인트">멤버십 포인트</a>
                         </div>
